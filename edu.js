@@ -1,11 +1,5 @@
 // THE EDUSHORTENER RESTORE CODE
 // VERY SIMPLE + VERY BAD
-
-const head = document.getElementsByTagName('head')[0];
-const body = document.getElementsByTagName('body')[0];
-head.innerHTML = '';
-body.innerHTML = '';
-const base32str = window.location.pathname.split("/").pop();
 function base32Decode(base32) {
     const base32Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
     let bits = "";
@@ -25,11 +19,19 @@ function base32Decode(base32) {
 
     return decoded;
 }
+const head = document.getElementsByTagName('head')[0];
+const body = document.getElementsByTagName('body')[0];
 
+const base32str = window.location.pathname.split("/").pop();
 if (base32str) {
-	const decoded = base32Decode(base32str);
-	if (decoded) {
-		window.location.href = decoded;
-	}
+    (async () => {
+        const isenabled = ((await browser.storage.local.get()).enabled) || false;
+        if (isenabled) {
+            head.innerHTML = '';
+            body.innerHTML = '';
+            window.location.href = base32Decode(base32str);
+        }
+    })()
 	
 }
+

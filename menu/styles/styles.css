@@ -1,0 +1,22 @@
+body {
+	background-color: #2b2a33;
+	color: white;
+}
+
+.title-text {
+	margin-right: 1px;
+}
+
+.info {
+	margin-left: 5px
+}
+
+.button {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 5px;
+}
+
+.btnon {
+	border-radius: 10px;
+}
